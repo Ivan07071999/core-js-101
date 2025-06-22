@@ -278,7 +278,10 @@ function getSecondItems(arr) {
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  return arr.map((item, index) => Array(index + 1).fill(item)).flat();
+  return arr.reduce((acc, item, index) => {
+    const repeatedItems = Array(index + 1).fill(item);
+    return acc.concat(repeatedItems);
+  }, []);
 }
 
 /**
@@ -569,7 +572,7 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], (x) => x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-  return arr.flatMap(childrenSelector);
+  return arr.reduce((acc, item) => acc.concat(childrenSelector(item)), []);
 }
 
 /**
@@ -585,9 +588,7 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(arr, indexes) {
-  const newArray = arr.flat(3);
-  const arrSum = indexes.reduce((a, b) => a + b, 0);
-  return newArray[arrSum];
+  return indexes.reduce((acc, index) => acc[index], arr);
 }
 
 /**
