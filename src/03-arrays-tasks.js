@@ -618,10 +618,6 @@ function swapHeadAndTail(arr) {
 
   return tail.concat(middleElement, head);
 }
-// console.log(swapHeadAndTail( [ 1, 2, 3, 4, 5 ]))
-// console.log(swapHeadAndTail([ 1, 2 ]))
-// console.log(swapHeadAndTail([ 1, 2, 3, 4, 5, 6, 7, 8 ]))
-// console.log(swapHeadAndTail([ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]))
 
 module.exports = {
   findElement,
